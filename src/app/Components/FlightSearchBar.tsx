@@ -24,7 +24,7 @@ const FlightSearchBar = () => {
             onChange={(val) => console.log(val)}
           />
           <CommonInput
-            label="From"
+            label="To"
             placeholder="Select city"
             options={[
               { label: "Ahmedabad", value: "AMD" },

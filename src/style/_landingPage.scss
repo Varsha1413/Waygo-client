@@ -1,9 +1,10 @@
 @use "colors" as *;
+$mobile-breakpoint: 750px;
 
 .landing-page-image-context {
   background-image: url("/flight-landing-page.jpg");
   height: 600px;
-  width: 100%;
+  width: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,12 +12,15 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding: 0 16px;
 }
 
 .landing-page-image-context-inner-content {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.8s ease, transform 0.7s ease;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .landing-page-image-context-inner-content.show {
@@ -25,12 +29,12 @@
 }
 
 .landing-page-image-context-title {
-  //   width: 100%;
   color: $white;
   font-size: 60px;
   height: auto;
   padding-top: 50px;
   padding-bottom: 10px;
+  font-weight: 700;
 }
 
 .landing-page-image-searchbar-context {
@@ -39,50 +43,63 @@
 
 .search-bar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: $themeColor;
-  border-radius: 5px;
+  border-radius: 8px;
+
   padding-block: 40px;
-  padding-inline: 10px;
-  gap: 2px;
-  width: 100%;
+  padding-inline: 20px;
+  gap: 8px;
+  width: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .search-inputs {
   display: flex;
-  gap: 4;
+  gap: 3;
+  flex: 1;
 }
+
 .search-inputs > :first-child .common-input-inner,
 .search-inputs > :first-child {
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-left: 1px solid #e0e0e0;
+}
+
+.search-inputs > :not(:first-child) {
+  border-left: 1px solid #e0e0e0;
 }
 
 .search-inputs > :nth-last-child(1) .common-input-inner,
 .search-inputs > :nth-last-child(1) {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .common-input {
   background: $white;
-  padding: 10px 14px;
-  min-width: 180px;
+  padding: 12px 16px;
+  min-width: 100px;
+  flex: 1;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
 
   label {
     font-size: 12px;
     color: $lightText;
+    font-weight: 500;
   }
 }
 
 .input-value {
   position: relative;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  //   font-weight: 600;
   color: $black;
   display: flex;
 }
@@ -91,8 +108,10 @@
   width: 100%;
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
+  //   font-weight: 600;
   background: transparent;
+  cursor: pointer;
 }
 
 .select-dropdown {
@@ -100,16 +119,20 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #fff;
+  background: $white;
   border: 1px solid #ddd;
-  max-height: 180px;
+  border-radius: 4px;
+  max-height: 200px;
   overflow-y: auto;
   z-index: 10;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .select-dropdown li {
-  padding: 8px 10px;
+  padding: 10px 16px;
   cursor: pointer;
+  list-style: none;
 }
 
 .select-dropdown li:hover {
@@ -119,27 +142,139 @@
 .search-btn {
   background: $lightblue;
   color: $white;
-  padding: 0 24px;
-  height: 100%;
+  padding: 0 32px;
+  height: 56px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
-  padding-block: 21px;
-  //   float: right;
-  //   position: relative;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: darken($lightblue, 5%);
+  }
 }
 
 .clear-icon {
   position: absolute;
-  right: 6px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
   cursor: pointer;
   color: $lightText;
+
+  &:hover {
+    color: #000;
+  }
 }
 
-.clear-icon:hover {
-  color: #000;
+// Responsive styles
+@media (max-width: $mobile-breakpoint) {
+  .landing-page-image-context {
+    background-image: none !important;
+    background-color: $themeColor;
+    height: auto;
+    padding: 20px 16px;
+  }
+
+  .landing-page-image-context-title {
+    color: $white;
+    font-size: 32px;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: flex-start;
+    line-height: 1.2;
+  }
+
+  .landing-page-image-searchbar-context {
+    padding-bottom: 10px;
+    width: 100%;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .search-inputs {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .search-inputs > :first-child,
+  .search-inputs > :not(:first-child),
+  .search-inputs > :nth-last-child(1) {
+    border-left: none;
+    border-radius: 0 !important;
+  }
+
+  .search-inputs > :first-child {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+  }
+
+  .search-inputs > :nth-last-child(1) {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  .common-input {
+    width: auto;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0 !important;
+    background: $white;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .search-btn {
+    width: 100%;
+    padding: 16px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+
+  .input-value input {
+    font-size: 14px;
+  }
+}
+
+// Tablet breakpoint
+@media (max-width: 1024px) and (min-width: 751px) {
+  .landing-page-image-context-title {
+    font-size: 48px;
+  }
+
+  .search-inputs {
+    flex-wrap: wrap;
+  }
+
+  .common-input {
+    min-width: 150px;
+  }
+}
+.info-context{
+    display: flex;
+    // justify-content: ;
+}
+.card-context {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
 }
