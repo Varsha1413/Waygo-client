@@ -1,0 +1,196 @@
+@use "colors" as *;
+body {
+  margin: 0px;
+}
+// .main-body-container {
+//   width: 1000px;
+// }
+// .main-body-context{
+//   width: 100%;
+//   // padding-bottom: 10px;
+//   display: flex;
+//   justify-content: center;
+// }
+.full-container {
+  width: 100%;
+  // min-height: 100vh;   // full screen height
+  display: flex;
+  justify-content: center;
+  background-color: $themeColor;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px;    
+}
+
+//Buttons
+Button {
+  text-transform: none !important;
+}
+
+$spacings: (0, 2, 3, 5, 8, 12, 16, 20, 24, 32, 40);
+
+@for $i from 1 through length($spacings) {
+  .m-#{$i} {
+    margin: nth($spacings, $i) !important;
+  }
+  .ml-#{$i} {
+    margin-left: nth($spacings, $i) !important;
+  }
+  .mr-#{$i} {
+    margin-right: nth($spacings, $i) !important;
+  }
+  .mt-#{$i} {
+    margin-top: nth($spacings, $i) !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: nth($spacings, $i) !important;
+  }
+  .mx-#{$i} {
+    margin-inline: nth($spacings, $i) !important;
+  }
+  .my-#{$i} {
+    margin-block: nth($spacings, $i) !important;
+  }
+  .p-#{$i} {
+    padding: nth($spacings, $i) !important;
+  }
+  .pl-#{$i} {
+    padding-left: nth($spacings, $i) !important;
+  }
+  .pr-#{$i} {
+    padding-right: nth($spacings, $i) !important;
+  }
+  .pt-#{$i} {
+    padding-top: nth($spacings, $i) !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: nth($spacings, $i) !important;
+  }
+  .px-#{$i} {
+    padding-inline: nth($spacings, $i) !important;
+  }
+  .py-#{$i} {
+    padding-block: nth($spacings, $i) !important;
+  }
+}
+
+//colors
+$color-map: (
+  white: $white,
+  black: $black,
+  lightGrey: $lightGrey,
+  darkText: $darkText,
+  lightText: $lightText,
+
+  lightblue: $lightblue,
+  blue: $blue,
+  green: $green,
+  red: $red,
+  orange: $orange,
+  purple: $purple,
+
+  theme: $themeColor,
+  primary: $primary-color,
+  primaryLight: $primaryLight,
+);
+
+@each $key, $value in $color-map {
+  .text-#{$key} {
+    color: $value !important;
+  }
+}
+
+@each $key, $value in $color-map {
+  .bg-#{$key} {
+    background-color: $value !important;
+  }
+  .bg-hover-#{$key} {
+    &:hover {
+      background-color: rgba($value, 0.3) !important;
+    }
+  }
+}
+
+@each $key, $value in $color-map {
+  .border-#{$key} {
+    border-color: $value !important;
+  }
+  .border-active-#{$key} {
+    &:active {
+      border-color: $value !important;
+    }
+  }
+}
+
+// ---------------------------------------- Font Weights ----------------------------------------
+
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+);
+
+@each $name, $value in $font-weights {
+  .fw-#{$name} {
+    font-weight: $value !important;
+  }
+}
+
+$text-decorations: (
+  none: none,
+  underline: underline,
+  overline: overline,
+  line-through: line-through,
+);
+
+@each $name, $value in $text-decorations {
+  .td-#{$name} {
+    text-decoration: $value !important;
+  }
+}
+
+//gap
+$gaps: (
+  0: 0,
+  4: 4px,
+  8: 8px,
+  12: 12px,
+  16: 16px,
+  20: 20px,
+  24: 24px,
+  32: 32px,
+);
+
+@each $name, $value in $gaps {
+  .g-#{$name} {
+    gap: $value !important;
+  }
+}
+
+// width
+$widths: (
+  0: 0,
+  4: 4px,
+  8: 8px,
+  12: 12px,
+  16: 16px,
+  20: 20px,
+  24: 24px,
+  32: 32px,
+  40: 40px,
+  50: 50px,
+  100: 100%,
+  auto: auto,
+);
+
+@each $name, $value in $widths {
+  .w-#{$name} {
+    width: $value !important;
+  }
+}

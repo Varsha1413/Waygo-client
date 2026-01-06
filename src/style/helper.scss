@@ -1,0 +1,41 @@
+@use "colors" as *;
+
+//transperent button
+.btn-transperent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px !important;
+  &:hover {
+    background-color: rgba($white, 0.2) !important;
+  }
+  &:active {
+    border: $white 1px solid;
+    background-color: $themeColor !important;
+  }
+}
+.border-btn {
+  color: $white !important;
+  background-color: $themeColor !important;
+  border: $white solid 1px !important;
+  font-weight: bold !important;
+  height: 35px !important;
+  gap: 5px !important ;
+  border-radius: 20px !important;
+  &:hover{
+    background-color: rgba($white, 0.2) !important;
+  }
+  &.active {
+    background-color: $white !important;
+    color: $themeColor !important;
+    border: 1px solid $themeColor !important;
+  }
+}
+//link
+.link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    // transition: text-decoration-color 0.3s ease;
+  }
+}

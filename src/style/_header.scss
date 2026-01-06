@@ -1,0 +1,43 @@
+@use "colors" as *;
+$mobile-breakpoint: 750px;
+
+.header-context {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-inline: 5px;
+  color: $white;
+}
+.header-logo{
+  cursor: pointer;
+}
+.header-btns-context {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .header-context {
+    padding-block: 5px;
+  }
+  .header-btns-context {
+    gap: 0px;
+  }
+  .d-none {
+    display: none;
+  }
+}
+
+///------------------------------Options Component CSS --------------------------------------------------------///
+.option-conponent-context {
+  height: 60px;
+  display: flex;
+  justify-content: start;
+  padding-inline: 5px;
+  align-items: center;
+  gap: 15px;
+}
