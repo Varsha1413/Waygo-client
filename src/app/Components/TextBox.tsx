@@ -1,16 +1,16 @@
-"use client";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
-import React, { useState } from "react";
-import { IconButton, InputAdornment } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import SearchIcon from "@mui/icons-material/Search";
+'use client';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import React, { useState } from 'react';
+import { IconButton, InputAdornment } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import SearchIcon from '@mui/icons-material/Search';
 
 type textBoxProps = {
   label: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  value: string | number |undefined;
+  value: string | number | undefined;
   name: string;
   required?: boolean;
   type?: string;
@@ -74,7 +74,7 @@ const TextBox: React.FC<textBoxProps> = ({
         onChange={handleChange}
         onBlur={handleTrimOnBlur}
         required={required}
-        type={type === "password" && !showPassword ? "password" : "text"}
+        type={type === 'password' && !showPassword ? 'password' : 'text'}
         disabled={disabled}
         variant="outlined"
         className="search-textfield"
@@ -82,24 +82,27 @@ const TextBox: React.FC<textBoxProps> = ({
           maxLength: maxLength,
         }}
         error={error}
-        helperText={helperText || " "}
+        helperText={helperText || ' '}
         sx={{
-          ...(type === "search" && {
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "20px",
+          ...(type === 'search' && {
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '20px',
             },
           }),
         }}
         fullWidth
         InputProps={{
           endAdornment:
-            type === "password" ? (
+            type === 'password' ? (
               <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword((prev) => !prev)} edge="end">
+                <IconButton
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  edge="end"
+                >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
-            ) : type === "search" ? (
+            ) : type === 'search' ? (
               <InputAdornment position="end">
                 <SearchIcon />
               </InputAdornment>

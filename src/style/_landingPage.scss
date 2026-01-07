@@ -250,6 +250,7 @@ $mobile-breakpoint: 750px;
   .input-value input {
     font-size: 14px;
   }
+ 
 }
 
 // Tablet breakpoint
@@ -266,15 +267,55 @@ $mobile-breakpoint: 750px;
     min-width: 150px;
   }
 }
-.info-context{
-    display: flex;
-    // justify-content: ;
+
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 330px;
+  border: 1px solid rgb(209, 206, 206) !important;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: large;
+//   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.card-context {
+
+// .info-cards:hover {
+//     transform: translateY(-4px); /* move 3–5px up */
+//     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+//     z-index: 50;
+//   }
+
+.info-cards-icons {
+  margin-block: 5px;
+}
+.flight-cards {
+  padding-inline: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  gap: 20px;
+}
+.all-context {
   max-width: 1200px;
   margin: 0 auto;
+}
+.info-context {
+  padding-inline: 10px;
+  padding-block: 30px;
+//   margin-inline: 10px;
+  display: flex;
+  justify-content: space-around;
   gap: 20px;
+}
+.see-more-details-context {
+  margin-block: 20px;
+  //   margin-left: 10px;
+  padding-inline: 20px;
+}
+.button-see-more-details {
+  border: 1px solid $themeColor !important;
+  color: $white !important;
+  background-color: $themeColor !important;
+  border-radius: 8px !important;
 }

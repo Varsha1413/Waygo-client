@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { useEffect, useRef, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 type Option = {
   label: string;
@@ -23,7 +23,7 @@ const CommonInput = ({
 }: CommonInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [search, setSearch] = useState(value || "");
+  const [search, setSearch] = useState(value || '');
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const filteredOptions = options.filter((opt) =>
@@ -42,14 +42,14 @@ const CommonInput = ({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation(); // prevent blur
-    setSearch("");
-    onChange("");
+    setSearch('');
+    onChange('');
     setIsOpen(false);
   };
 

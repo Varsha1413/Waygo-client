@@ -11,13 +11,13 @@ $mobile-breakpoint: 750px;
   padding-inline: 5px;
   color: $white;
 }
-.header-logo{
+.header-logo {
   cursor: pointer;
 }
 .header-btns-context {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: auto;
 }
 
 @media (max-width: $mobile-breakpoint) {
@@ -25,7 +25,8 @@ $mobile-breakpoint: 750px;
     padding-block: 5px;
   }
   .header-btns-context {
-    gap: 0px;
+    justify-content: flex-start;
+    gap: 0;
   }
   .d-none {
     display: none;
