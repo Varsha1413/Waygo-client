@@ -1,9 +1,8 @@
 'use client';
 
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Link from 'next/link';
 import { useState } from 'react';
 
 import LoginModal from '../Auth/LoginModal';
@@ -16,6 +15,8 @@ type ModalType = 'login' | 'register' | 'forgot' | 'otp' | 'reset' | null;
 
 const Header = () => {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [forgotToken, setForgotToken] = useState<string | null>(null);
+  const [otpToken, setOtpToken] = useState<string | null>(null);
 
   return (
     <>
@@ -77,17 +78,21 @@ const Header = () => {
         onClose={() => setActiveModal(null)}
         openOTPHandler={() => setActiveModal('otp')}
         openLoginHandler={() => setActiveModal('login')}
+        setForgotToken={setForgotToken}
       />
 
       <OTPModal
         open={activeModal === 'otp'}
         onClose={() => setActiveModal(null)}
+        token={forgotToken ? forgotToken : ''}
+        setOtpToken={setOtpToken}
         openForgotHandler={() => setActiveModal('forgot')}
         openResetHandler={() => setActiveModal('reset')}
       />
 
       <ResetModal
         open={activeModal === 'reset'}
+        token={otpToken ? otpToken : ''}
         onClose={() => setActiveModal(null)}
         openOTPHandler={() => setActiveModal('otp')}
         openLoginHandler={() => setActiveModal('login')}

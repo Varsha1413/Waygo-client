@@ -2,14 +2,19 @@
 
 import { Dialog, DialogContent, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-type ModalType = 'login' | 'register' | 'forgot' | 'otp' | 'reset';
+import TextBox from '../Components/TextBox';
+import { Form, Formik } from 'formik';
+import { ResetPasswordSchema } from '../utils/validations/auth.validation';
+import { ResetPasswordService } from '../Services/auth.service';
+import { toast } from 'react-toastify';
+import { IAppError } from '../Models/common.model';
 
 interface AuthModalProps {
   open: boolean;
   onClose: () => void;
   openOTPHandler: () => void;
   openLoginHandler: () => void;
+  token: string;
 }
 
 const ResetModal: React.FC<AuthModalProps> = ({
@@ -17,7 +22,24 @@ const ResetModal: React.FC<AuthModalProps> = ({
   onClose,
   openOTPHandler,
   openLoginHandler,
+  token,
 }) => {
+  const submitHandler = async (values: {
+    password: string;
+    confirmPassword: string;
+  }) => {
+    const { confirmPassword, password } = values;
+    try {
+      const result = await ResetPasswordService(password, token);
+      if (result.statusCode === 200 || 201) {
+        openLoginHandler();
+        toast.success(result.message);
+      }
+    } catch (error) {
+      const err = error as IAppError;
+      toast.error(err.message);
+    }
+  };
   return (
     <Dialog
       open={open}
@@ -40,23 +62,47 @@ const ResetModal: React.FC<AuthModalProps> = ({
             Reset password
           </h1>
 
-          <input
-            type="password"
-            className="auth-input theme-border mb-4"
-            placeholder="New password"
-          />
-          <input
-            type="password"
-            className="auth-input theme-border mb-6"
-            placeholder="Confirm password"
-          />
-
-          <button
-            onClick={openLoginHandler}
-            className="auth-primary-btn theme-bg w-full"
+          <Formik
+            initialValues={{ password: '', confirmPassword: '' }}
+            validationSchema={ResetPasswordSchema}
+            onSubmit={submitHandler}
           >
-            Reset Password
-          </button>
+            {({ values, errors, touched, handleChange, handleBlur }) => (
+              <Form className="w-full">
+                <TextBox
+                  name="password"
+                  label="password"
+                  type="password"
+                  placeholder="New password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.password && Boolean(errors.password)}
+                  helperText={touched.password && errors.password}
+                />
+                <TextBox
+                  name="confirmPassword"
+                  label="confirmPassword"
+                  type="password"
+                  placeholder="Confirm password"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={
+                    touched.confirmPassword && Boolean(errors.confirmPassword)
+                  }
+                  helperText={touched.confirmPassword && errors.confirmPassword}
+                />
+
+                <button
+                  type="submit"
+                  className="auth-primary-btn theme-bg w-full"
+                >
+                  Reset Password
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </DialogContent>
     </Dialog>
